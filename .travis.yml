@@ -2,9 +2,12 @@ sudo: required
 language: python
 services:
   - docker
+before_script:
+  - pip install -r requirements_dev.txt  
 script:
   -  docker-compose run web ./manage.py test
 after_success:
+  - coveralls
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push kalyzee/liveapi;
