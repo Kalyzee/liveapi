@@ -8,5 +8,5 @@ after_success:
   - sudo docker-compose run web "pip install -r requirements_dev.txt ; coveralls"
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker push kalyzee/liveapi;
+      docker push kalyzee/liveorchestrator;
     fi
